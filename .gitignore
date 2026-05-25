@@ -1,0 +1,8 @@
+# GNAT build artifacts
+*.ali
+*.o
+
+# Compiled executables
+*.exe
+b~*.adb
+b~*.ads

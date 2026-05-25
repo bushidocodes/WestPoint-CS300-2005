@@ -7,14 +7,19 @@ WITH Ada.Float_Text_IO; USE Ada.Float_Text_IO;
  
 
 PROCEDURE Menu_Demo IS 
-   PROCEDURE Read_File; 
+   PROCEDURE Read_File;
 
-   TYPE Class_Name_Type IS ARRAY (1..9) OF String(1..5); 
-   TYPE Classes_Credit_Type IS ARRAY (1..9) OF Credit_Type; 
-   TYPE Grade_Letter_One_Type IS ARRAY (1..9) OF Grade_Type; 
-   TYPE Grade_Letter_Two_Type IS ARRAY (1..9) OF Character; 
-   TYPE Grade_Value IS ARRAY (1..9) OF Grade_Nums; 
-   TYPE User_Record_Array IS ARRAY (1..25) OF User_Record_Type; 
+   SUBTYPE Credit_Type IS Float RANGE 0.5..6.0;
+   SUBTYPE Grade_Nums IS Float RANGE 0.0..4.33;
+   SUBTYPE Grade_Type IS Character RANGE 'A'..'F';
+   SUBTYPE Menu_Range IS Integer RANGE 0..4;
+   SUBTYPE Num_Classes IS Integer RANGE 1..9;
+
+   TYPE Class_Name_Type IS ARRAY (1..9) OF String(1..5);
+   TYPE Classes_Credit_Type IS ARRAY (1..9) OF Credit_Type;
+   TYPE Grade_Letter_One_Type IS ARRAY (1..9) OF Grade_Type;
+   TYPE Grade_Letter_Two_Type IS ARRAY (1..9) OF Character;
+   TYPE Grade_Value IS ARRAY (1..9) OF Grade_Nums;
    TYPE User_Record_Type IS RECORD
       Initials : String(1..3) := "   ";
       Old_GPA : Grade_Nums := 0.00;
@@ -24,12 +29,7 @@ PROCEDURE Menu_Demo IS
       Class_Name : Class_Name_Type;
       Credit : Classes_Credit_Type;
    END RECORD;
-   
-   SUBTYPE Credit_Type IS Float RANGE 0.5..6.0; 
-   SUBTYPE Grade_Nums IS Float RANGE 0.0..4.33; 
-   SUBTYPE Grade_Type IS Character RANGE 'A'..'F'; 
-   SUBTYPE Menu_Range IS Integer RANGE 0..4; 
-   SUBTYPE Num_Classes IS Integer RANGE 1..9; 
+   TYPE User_Record_Array IS ARRAY (1..25) OF User_Record_Type;
    
    InF, OutF : File_Type; 
    Grade1 : Grade_Type; 
