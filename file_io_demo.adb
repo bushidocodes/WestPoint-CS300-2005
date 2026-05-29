@@ -49,20 +49,27 @@ PROCEDURE File_IO_Demo IS
       Get(InF,This_Line.Grad_Year); 
    END Read_Record; 
 
-   --Read gpa.txt and save each line into Cadet_File 
-   PROCEDURE Read_File IS 
-   Counter:Integer:=1; 
-   BEGIN 
-      Open(InF, In_File, "gpa.txt"); 
-      WHILE NOT End_Of_File(InF) LOOP 
-        Read_Record(Cadet_File(Counter)); 
-        Skip_Line(InF); 
-        Put(Counter, Width=>1); 
-        Put(" Record(s) Read"); 
-        New_Line; 
-        Counter:=Counter+1; 
-      END LOOP; 
-      Close(InF); 
+   --Read gpa.txt and save each line into Cadet_File
+   PROCEDURE Read_File IS
+   Counter:Integer:=1;
+   BEGIN
+      Open(InF, In_File, "gpa.txt");
+      WHILE NOT End_Of_File(InF) LOOP
+        EXIT WHEN Counter > MAXSIZE;
+        Read_Record(Cadet_File(Counter));
+        Skip_Line(InF);
+        Put(Counter, Width=>1);
+        Put(" Record(s) Read");
+        New_Line;
+        Counter:=Counter+1;
+      END LOOP;
+      Close(InF);
+   EXCEPTION
+      WHEN OTHERS =>
+         IF Is_Open(InF) THEN
+            Close(InF);
+         END IF;
+         RAISE;
    END Read_File; 
 
    PROCEDURE Manual_Input ( Record_Inputed : OUT Cadet_Record ) IS 
