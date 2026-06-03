@@ -127,13 +127,12 @@ The stub is a **no-op**: `Create_World` prints one diagnostic line, all other dr
 | `distance_adder.adb` | Unit conversion table (feet, yards, miles, km) |
 | `distance_red_blue.adb` | Pythagorean distance between named coordinate pairs |
 | `distance_red_blue_2.adb` | Combat simulator with turtle graphics; uses `Turtle_Graphics` stub |
-| `file_io_demo.adb` | File I/O with cadet records (GPA, credit hours, graduation year) |
 | `find_bundles_each.adb` | Distributes laundry bundles with exception-based input validation |
 | `Find_CM_Speed.adb` | Combines cm→inch conversion with speed calculation |
 | `find_speed.adb` | Calculates required march speed in miles/hour |
 | `for_loops.adb` | Multiple FOR-loop exercises; uses `Min_Max` stub |
 | `fuel_estimation.adb` | Estimates fuel consumption across multiple tanks |
-| `menu_demo.adb` | GPA calculator with a text menu |
+| `menu_demo.adb` | GPA calculator with a text menu; includes file persistence (`Read_File` / `Save_Statistics` on `gpa.txt`) |
 | `min_max.ads` / `min_max.adb` | `Min_Max` stub (Feldman, GWU) — `Minimum` and `Maximum` over integers |
 | `nested_loops.adb` | Nested `FOR` loops — lap/mile counter |
 | `turtle_graphics.ads` / `turtle_graphics.adb` | `Turtle_Graphics` stub (Markow, Ressler, Blair / West Point) |
@@ -175,7 +174,6 @@ Incomplete skeleton (several procedures left as stubs by the original assignment
 ├── distance_adder.adb
 ├── distance_red_blue.adb
 ├── distance_red_blue_2.adb
-├── file_io_demo.adb
 ├── find_bundles_each.adb
 ├── Find_CM_Speed.adb
 ├── find_speed.adb
