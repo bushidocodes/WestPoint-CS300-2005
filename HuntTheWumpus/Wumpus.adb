@@ -105,14 +105,17 @@ PROCEDURE Wumpus IS
       WHEN Constraint_Error => 
          Put(Bel); 
    END Move_Hunter; 
-   -- Incomplete:  see comment within 
-   PROCEDURE Shoot(Row_Dir, Col_Dir : IN Integer) IS 
-   BEGIN 
-      -- To choose the appropriate condition, check the Hazard function for the cavern that the arrow will shoot into.  Only two outcomes are possible:  RAISE Wumpus_Killed or RAISE Hunter_Eaten 
-      NULL; 
-   EXCEPTION 
-      WHEN Constraint_Error => 
-         RAISE Hunter_Eaten; -- shot out of bounds still wakes the wumpus 
+   PROCEDURE Shoot(Row_Dir, Col_Dir : IN Integer) IS
+   BEGIN
+      CASE Hazard(World,
+                  Cavern_Row_Type(Integer(Hunter_Row) + Row_Dir),
+                  Cavern_Col_Type(Integer(Hunter_Col) + Col_Dir)) IS
+         WHEN Wumpus    => RAISE Wumpus_Killed;
+         WHEN OTHERS    => RAISE Hunter_Eaten; -- arrow wakes the wumpus
+      END CASE;
+   EXCEPTION
+      WHEN Constraint_Error =>
+         RAISE Hunter_Eaten; -- shot out of bounds still wakes the wumpus
    END Shoot; 
 
 -- Incomplete:  see comments within 
