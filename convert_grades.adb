@@ -1,7 +1,7 @@
 WITH Ada.Text_IO, Ada.Integer_Text_IO; 
 USE Ada.Text_IO, Ada.Integer_Text_IO; 
 
-PROCEDURE Convert_Grade IS 
+PROCEDURE Convert_Grades IS
    Score : Integer; 
 BEGIN 
    Put("Enter the score >"); 
@@ -24,4 +24,4 @@ BEGIN
          Put("Invalid input!"); 
    END CASE; 
 
-END Convert_Grade; 
+END Convert_Grades; 
