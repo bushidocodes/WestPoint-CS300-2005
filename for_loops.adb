@@ -92,7 +92,7 @@ PROCEDURE Fk_Lsn11 IS
       --|    compute equivalent Feet, Miles, Yards 
       --|    display Kilo, Feet, Miles, Yards 
       Put("Kilometers     Feet          Miles         Yards"); 
-      FOR N IN 1 .. 20 
+      FOR N IN 0 .. 9
       LOOP 
             New_Line; 
             Kilo := Float(N); 
