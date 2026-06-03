@@ -143,13 +143,10 @@ PACKAGE BODY Project2Pack IS
       END CASE; 
    END Draw_Cavern; 
 
-   PROCEDURE Draw_Hunter(Row : IN Cavern_Row_Type; Col : IN Cavern_Col_Type) IS 
-   BEGIN 
-      NULL; 
-      -- Add commands to: 
-      -- convert the row and colum to X,Y coordinates 
-      -- fly to those coordinates 
-      -- place the "hunter.png" icon at this location 
+   PROCEDURE Draw_Hunter(Row : IN Cavern_Row_Type; Col : IN Cavern_Col_Type) IS
+   BEGIN
+      Fly(Convert_Col_To_X(Col), Convert_Row_To_Y(Row));
+      Spot("hunter.png");
    END Draw_Hunter; 
 
    PROCEDURE End_Wumpus_Window IS 
