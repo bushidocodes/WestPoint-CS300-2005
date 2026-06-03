@@ -5,7 +5,7 @@ WITH Turtle_Graphics; USE Turtle_Graphics;
 WITH Ada.Numerics.Elementary_Functions;
 USE Ada.Numerics.Elementary_Functions;
 
-PROCEDURE Distance_Red_Blue IS
+PROCEDURE Distance_Red_Blue_2 IS
    Command_Name, Name_One, Name_Two : String( 1..5 );
 
    Alpha_X : Float := 0.0;
@@ -378,4 +378,4 @@ BEGIN
    WHEN Red_Is_Killed => 
       Put("Red is Killed.  Blue Wins"); 
 
-END Distance_Red_Blue; 
+END Distance_Red_Blue_2; 
