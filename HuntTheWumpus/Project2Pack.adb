@@ -15,13 +15,15 @@ PACKAGE BODY Project2Pack IS
       Col := Random_Col_Pack.Random(Col_Gen);
    END Get_Random_Location; 
 
-   FUNCTION Hazard(World : IN Wumpus_World_Type; Row : IN Cavern_Row_Type; Col : IN Cavern_Col_Type) RETURN Hazard_Type IS 
-   BEGIN 
-      IF World.Caverns(Row,Col).Lair_Indicator = Lair THEN 
-         RETURN Wumpus; 
-      ELSE 
-         RETURN None; 
-      END IF; 
+   FUNCTION Hazard(World : IN Wumpus_World_Type; Row : IN Cavern_Row_Type; Col : IN Cavern_Col_Type) RETURN Hazard_Type IS
+   BEGIN
+      IF World.Caverns(Row, Col).Lair_Indicator = Lair THEN
+         RETURN Wumpus;
+      ELSIF World.Caverns(Row, Col).Pit_Indicator THEN
+         RETURN Slime_Pit;
+      ELSE
+         RETURN None;
+      END IF;
    END Hazard; 
 
    PROCEDURE Get_Random_Hunter_Location(World : IN Wumpus_World_Type; Row : OUT Cavern_Row_Type; Col : OUT Cavern_Col_Type) IS 
@@ -43,14 +45,15 @@ PACKAGE BODY Project2Pack IS
       Row : Cavern_Row_Type; 
       Col : Cavern_Col_Type; 
 
-      -- remove pits and lair from previous game 
-      PROCEDURE Initialize_World IS 
-      BEGIN 
-         FOR R IN 1..Cavern_Row_Type'Last LOOP 
-            FOR C IN 1..Cavern_Col_Type'Last LOOP 
-               World.Caverns(R,C).Lair_Indicator := Far_From_Lair; 
-            END LOOP; 
-         END LOOP; 
+      -- remove pits and lair from previous game
+      PROCEDURE Initialize_World IS
+      BEGIN
+         FOR R IN 1..Cavern_Row_Type'Last LOOP
+            FOR C IN 1..Cavern_Col_Type'Last LOOP
+               World.Caverns(R, C).Lair_Indicator := Far_From_Lair;
+               World.Caverns(R, C).Pit_Indicator  := False;
+            END LOOP;
+         END LOOP;
       END Initialize_World; 
 
       -- Flag caverns near the lair, ignore caverns that don't exist 
@@ -63,19 +66,26 @@ PACKAGE BODY Project2Pack IS
          WHEN Constraint_Error => NULL; 
       END Set_Near_Lair; 
 
-      -- Put some slime pits in random locations 
-      PROCEDURE Make_Slime_Pits IS 
-      BEGIN 
-         -- To implement this procedure, start with line below, then use Make_Lair as a guide 
-         N_Slime_Pits := Random_Slime_Count_Pack.Random(Slime_Count_Gen); 
-         -- N_Slime_Pits will be either 1, 2, or 3.  Make the same number of slime pits. 
+      -- Put some slime pits in random locations
+      PROCEDURE Make_Slime_Pits IS
+      BEGIN
+         N_Slime_Pits := Random_Slime_Count_Pack.Random(Slime_Count_Gen);
+         FOR I IN 1 .. N_Slime_Pits LOOP
+            LOOP
+               Get_Random_Location(Row, Col);
+               EXIT WHEN NOT World.Caverns(Row, Col).Pit_Indicator;
+            END LOOP;
+            World.Caverns(Row, Col).Pit_Indicator := True;
+         END LOOP;
       END Make_Slime_Pits; 
 
-      -- Put the lair in a random location. 
-      PROCEDURE Make_Lair IS 
-      BEGIN 
-         Get_Random_Location(Row, Col); 
-         -- If you have added slime pits, check to see if the location you just got is already a slime pit before setting the Lair_Indicator.  If it is, get a different location first. 
+      -- Put the lair in a random location.
+      PROCEDURE Make_Lair IS
+      BEGIN
+         LOOP
+            Get_Random_Location(Row, Col);
+            EXIT WHEN NOT World.Caverns(Row, Col).Pit_Indicator;
+         END LOOP;
          World.Caverns(Row, Col).Lair_Indicator := Lair; 
          FOR R IN 1..2 LOOP 
             Set_Near_Lair(Row + R, Col); 

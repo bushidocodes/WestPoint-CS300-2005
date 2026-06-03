@@ -13,6 +13,7 @@ PACKAGE Project2Pack IS
 
    TYPE Cavern_Type IS RECORD
       Lair_Indicator : Lair_Indicator_Type := Far_From_Lair;
+      Pit_Indicator  : Boolean             := False;
    END RECORD;
 
    TYPE Caverns_Array_Type IS
@@ -23,7 +24,7 @@ PACKAGE Project2Pack IS
    END RECORD;
 
    -- What hazard (if any) occupies a cavern.
-   TYPE Hazard_Type IS (None, Wumpus);
+   TYPE Hazard_Type IS (None, Wumpus, Slime_Pit);
 
    ---------------------------------------------------------------------------
    -- World queries
