@@ -74,16 +74,17 @@ PROCEDURE Wumpus IS
       END CASE;
    END Check_Key_Pressed; 
 
-   -- Do not modify!  This procedure is done. 
-   PROCEDURE Check_Hunter IS 
-      Cavern : Cavern_Type RENAMES World.Caverns(Hunter_Row, Hunter_Col); 
-   BEGIN 
-      CASE Hazard(World, Hunter_Row, Hunter_Col) IS 
-         WHEN Wumpus => 
-            RAISE Hunter_Eaten; 
-         WHEN OTHERS => 
-            NULL; 
-      END CASE; 
+   PROCEDURE Check_Hunter IS
+      Cavern : Cavern_Type RENAMES World.Caverns(Hunter_Row, Hunter_Col);
+   BEGIN
+      CASE Hazard(World, Hunter_Row, Hunter_Col) IS
+         WHEN Wumpus =>
+            RAISE Hunter_Eaten;
+         WHEN Slime_Pit =>
+            RAISE Hunter_Eaten;
+         WHEN OTHERS =>
+            NULL;
+      END CASE;
    END Check_Hunter; 
 
    -- Incomplete:  see comments within 
