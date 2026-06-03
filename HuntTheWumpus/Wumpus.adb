@@ -87,23 +87,20 @@ PROCEDURE Wumpus IS
       END CASE;
    END Check_Hunter; 
 
-   -- Incomplete:  see comments within 
-   PROCEDURE Move_Hunter(Row_Change, Col_Change : IN Integer) IS 
-      New_Row : Cavern_Row_Type; 
-      New_Col : Cavern_Col_Type; 
-   BEGIN 
-      -- calculate new location based on changes, perhaps generating a range error 
-      -- (complete): draw old location without hunter, reveals new location, draws hunter in  new location 
-      Draw_Cavern(World, Hunter_Row, Hunter_Col); 
-      Draw_Cavern(World, New_Row, New_Col); 
-      Draw_Hunter(New_Row, New_Col); 
- 
-      --(complete): stores new row and column as the hunter location 
-      Hunter_Row := New_Row; 
-      Hunter_Col := New_Col; 
-   EXCEPTION 
-      WHEN Constraint_Error => 
-         Put(Bel); 
+   PROCEDURE Move_Hunter(Row_Change, Col_Change : IN Integer) IS
+      New_Row : Cavern_Row_Type;
+      New_Col : Cavern_Col_Type;
+   BEGIN
+      New_Row := Cavern_Row_Type(Integer(Hunter_Row) + Row_Change);
+      New_Col := Cavern_Col_Type(Integer(Hunter_Col) + Col_Change);
+      Draw_Cavern(World, Hunter_Row, Hunter_Col);
+      Draw_Cavern(World, New_Row, New_Col);
+      Draw_Hunter(New_Row, New_Col);
+      Hunter_Row := New_Row;
+      Hunter_Col := New_Col;
+   EXCEPTION
+      WHEN Constraint_Error =>
+         Put(Bel);
    END Move_Hunter; 
    PROCEDURE Shoot(Row_Dir, Col_Dir : IN Integer) IS
    BEGIN
