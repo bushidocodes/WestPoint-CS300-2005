@@ -274,7 +274,7 @@ BEGIN
       EXCEPTION 
          WHEN Data_Error => 
             Skip_Line; 
-            Put_Line("Enter a number 0-4.  Try agian..."); 
+            Put_Line("Enter a number 0-4.  Try again..."); 
          WHEN Constraint_Error => 
             Skip_Line; 
             Put_Line("Enter a number 0-4.  Try again..."); 
