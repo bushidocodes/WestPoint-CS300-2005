@@ -32,13 +32,17 @@ PROCEDURE TicketProgram IS
             Put("> $"); 
             Get(AmountPaid); 
             TotalChange := AmountPaid - TotalCost; 
-            IF TotalChange >= 0.0 THEN 
-                Find_Change(TotalChange); 
-                NewburgSupply := NewburgSupply - NumberTickets; 
-                TotalProfit := TotalProfit + TotalCost; 
-            ELSE 
-                Put("Insufficient Payment: Transaction Terminated"); 
-            END IF; 
+            IF TotalChange > 0.0 THEN
+                Find_Change(TotalChange);
+                NewburgSupply := NewburgSupply - NumberTickets;
+                TotalProfit := TotalProfit + TotalCost;
+            ELSIF TotalChange = 0.0 THEN
+                Put_Line("Exact price paid.");
+                NewburgSupply := NewburgSupply - NumberTickets;
+                TotalProfit := TotalProfit + TotalCost;
+            ELSE
+                Put("Insufficient Payment: Transaction Terminated");
+            END IF;
 
         ELSIF NumberTickets <= 0 THEN 
             New_Line; 
@@ -69,13 +73,17 @@ PROCEDURE TicketProgram IS
             Put("> $"); 
             Get(AmountPaid); 
             TotalChange := AmountPaid - TotalCost; 
-            IF TotalChange >= 0.0 THEN 
-                Find_Change(TotalChange); 
-                NyackSupply := NyackSupply - NumberTickets; 
-                TotalProfit := TotalProfit + TotalCost; 
-            ELSE 
-                Put("Insufficient Payment: Transaction Terminated"); 
-            END IF; 
+            IF TotalChange > 0.0 THEN
+                Find_Change(TotalChange);
+                NyackSupply := NyackSupply - NumberTickets;
+                TotalProfit := TotalProfit + TotalCost;
+            ELSIF TotalChange = 0.0 THEN
+                Put_Line("Exact price paid.");
+                NyackSupply := NyackSupply - NumberTickets;
+                TotalProfit := TotalProfit + TotalCost;
+            ELSE
+                Put("Insufficient Payment: Transaction Terminated");
+            END IF;
         ELSIF NumberTickets <= 0 THEN 
             New_Line; 
             Put("Invalid Input"); 
