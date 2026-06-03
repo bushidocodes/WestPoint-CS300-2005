@@ -6,7 +6,7 @@ USE Ada.Numerics.Elementary_Functions;
 
 WITH Min_Max; USE Min_Max; 
 
-PROCEDURE Fk_Lsn11 IS 
+PROCEDURE For_Loops IS
 
    PROCEDURE P15 IS 
       --| SPECIFICATION 
@@ -199,4 +199,4 @@ BEGIN
    END CASE; 
 EXCEPTION 
    WHEN OTHERS => NULL; 
-END Fk_Lsn11; 
+END For_Loops; 
