@@ -28,48 +28,50 @@ PROCEDURE Wumpus IS
       Check_Hunter; 
    END Create_Hunter; 
 
-   -- Incomplete:  see comments within 
-   PROCEDURE Support_Shooting IS 
-   BEGIN 
-      Put((7 * Bs) & "Shoot=>"); 
-      Get_Immediate(Key); 
-      Put((7 * Bs) & "Move =>"); 
-      CASE Key IS 
-         WHEN 's' | 'S' => -- left 
-            Shoot(0, -1); 
-         -- Add necessary code 
-         WHEN OTHERS => 
-            NULL; 
-      END CASE; 
-   END Support_Shooting; 
+   PROCEDURE Support_Shooting IS
+   BEGIN
+      Put((7 * Bs) & "Shoot=>");
+      Get_Immediate(Key);
+      Put((7 * Bs) & "Move =>");
+      CASE Key IS
+         WHEN 's' | 'S' => -- left
+            Shoot(0, -1);
+         WHEN 'e' | 'E' => -- up
+            Shoot(-1, 0);
+         WHEN 'd' | 'D' => -- right
+            Shoot(0, 1);
+         WHEN 'x' | 'X' => -- down
+            Shoot(1, 0);
+         WHEN OTHERS =>
+            NULL;
+      END CASE;
+   END Support_Shooting;
 
-   -- Incomplete:  see comments within 
-   PROCEDURE Check_Key_Pressed IS 
-   BEGIN 
-      CASE Key IS 
-         WHEN 's' | 'S' => -- left 
-            Move_Hunter(0, -1); 
-            Check_Hunter; 
-         WHEN 'd' | 'D' => -- right 
-            -- Add necessary code 
-            NULL; 
-         WHEN 'e' | 'E' => -- up 
-            -- Add necessary code 
-            NULL; 
-         WHEN 'x' | 'X' => -- down 
-            -- Add necessary code 
-            NULL; 
-         WHEN 'q' | 'Q' => -- quit game 
-            Put("Quit."); 
-            New_Line; 
-            End_Wumpus_Window; 
-            RETURN; 
-         WHEN 'k' | 'K' => 
-            -- Add necessary code 
-            NULL; 
-         WHEN OTHERS => 
-            NULL; 
-      END CASE; 
+   PROCEDURE Check_Key_Pressed IS
+   BEGIN
+      CASE Key IS
+         WHEN 's' | 'S' => -- left
+            Move_Hunter(0, -1);
+            Check_Hunter;
+         WHEN 'd' | 'D' => -- right
+            Move_Hunter(0, 1);
+            Check_Hunter;
+         WHEN 'e' | 'E' => -- up
+            Move_Hunter(-1, 0);
+            Check_Hunter;
+         WHEN 'x' | 'X' => -- down
+            Move_Hunter(1, 0);
+            Check_Hunter;
+         WHEN 'q' | 'Q' => -- quit game
+            Put("Quit.");
+            New_Line;
+            End_Wumpus_Window;
+            RETURN;
+         WHEN 'k' | 'K' => -- shoot
+            Support_Shooting;
+         WHEN OTHERS =>
+            NULL;
+      END CASE;
    END Check_Key_Pressed; 
 
    -- Do not modify!  This procedure is done. 
