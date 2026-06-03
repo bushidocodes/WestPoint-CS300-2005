@@ -104,7 +104,7 @@ PACKAGE BODY Project2Pack IS
    -- Procedures for creating a drawing window and drawing caverns. 
    Cavern_Size : CONSTANT := 50.0; -- must match cell.png 
    N_Rows : CONSTANT := 1 + Cavern_Row_Type'Last - Cavern_Row_Type'First; 
-   N_Cols : CONSTANT := 1 + Cavern_Col_Type'Last - Cavern_Row_Type'First; 
+   N_Cols : CONSTANT := 1 + Cavern_Col_Type'Last - Cavern_Col_Type'First;
 
    PROCEDURE Create_Wumpus_Window IS 
    BEGIN 
