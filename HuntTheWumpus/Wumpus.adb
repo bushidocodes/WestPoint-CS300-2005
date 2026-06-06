@@ -115,28 +115,47 @@ PROCEDURE Wumpus IS
          RAISE Hunter_Eaten; -- shot out of bounds still wakes the wumpus
    END Shoot; 
 
--- Incomplete:  see comments within 
-BEGIN  --Wumpus 
-   Create_Wumpus_Window; 
-   --Ask "Play or Quit?" here 
-   Clear_Wumpus_Window;  -- Makes a fresh window 
-   Make_Random_Wumpus_World(World); 
-   BEGIN  --Exception 
-      Create_Hunter;  -- Puts hunter at a fresh location and draw her. 
-      Put("Move =>"); 
-      LOOP   --Handles all movenments 
-         Get_Immediate(Key); 
-         Check_Key_Pressed; 
-      END LOOP; 
-   EXCEPTION 
-      WHEN Hunter_Eaten => 
-         New_Line; 
-         Put("Hunter has been eaten by the wumpus."); 
-         New_Line; 
-      WHEN Wumpus_Killed => 
-         New_Line; 
-         Put("Yahoo! You slayed the wumpus!"); 
-         New_Line; 
-   END;  --Exception 
-   End_Wumpus_Window; 
+BEGIN  --Wumpus
+   Create_Wumpus_Window;
+   DECLARE
+      Play_Choice : Character;
+   BEGIN
+      Put("Play? (y/n) > ");
+      Get_Immediate(Play_Choice);
+      New_Line;
+      IF Play_Choice /= 'y' AND THEN Play_Choice /= 'Y' THEN
+         End_Wumpus_Window;
+         RETURN;
+      END IF;
+   END;
+   LOOP  --Replay loop
+      Clear_Wumpus_Window;
+      Make_Random_Wumpus_World(World);
+      BEGIN  --Exception
+         Create_Hunter;
+         Put("Move =>");
+         LOOP  --Handles all movements
+            Get_Immediate(Key);
+            Check_Key_Pressed;
+         END LOOP;
+      EXCEPTION
+         WHEN Hunter_Eaten =>
+            New_Line;
+            Put("Hunter has been eaten by the wumpus.");
+            New_Line;
+         WHEN Wumpus_Killed =>
+            New_Line;
+            Put("Yahoo! You slayed the wumpus!");
+            New_Line;
+      END;  --Exception
+      DECLARE
+         Again : Character;
+      BEGIN
+         Put("Play again? (y/n) > ");
+         Get_Immediate(Again);
+         New_Line;
+         EXIT WHEN Again /= 'y' AND THEN Again /= 'Y';
+      END;
+   END LOOP;
+   End_Wumpus_Window;
 END Wumpus; 
