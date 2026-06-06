@@ -205,18 +205,16 @@ PROCEDURE Menu_Demo IS
    END LOOP; 
    END Read_Record; 
 
-   PROCEDURE Read_File IS 
-   BEGIN 
-      Open(InF,IN_File,"gpa.txt"); 
-      LOOP 
-         EXIT WHEN End_Of_File(InF); 
-         LOOP 
-            EXIT WHEN End_Of_Line(InF); 
-            Read_Record(User_Record(1));
-            Skip_Line(InF); 
-         END LOOP; 
-      END LOOP; 
-      Close(InF); 
+   PROCEDURE Read_File IS
+      I : Positive := 1;
+   BEGIN
+      Open(InF, IN_File, "gpa.txt");
+      LOOP
+         EXIT WHEN End_Of_File(InF) OR ELSE I > User_Record'Last;
+         Read_Record(User_Record(I));
+         I := I + 1;
+      END LOOP;
+      Close(InF);
    END Read_File; 
 
    PROCEDURE Save_Record (This_Line : IN User_Record_Type) IS 
