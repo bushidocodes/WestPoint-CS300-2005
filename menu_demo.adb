@@ -192,9 +192,8 @@ PROCEDURE Menu_Demo IS
       END IF; 
    END Get_Cadet_Info; 
 
-   PROCEDURE Read_Record (This_Line: OUT User_Record_Type) IS 
-   BEGIN 
-      NULL; 
+   PROCEDURE Read_Record (This_Line: OUT User_Record_Type) IS
+   BEGIN
       Get(InF,This_Line.Initials); 
       Get(InF,This_Line.Old_GPA); 
       Get(InF,This_Line.Credit_Hours_Completed); 
@@ -213,8 +212,7 @@ PROCEDURE Menu_Demo IS
          EXIT WHEN End_Of_File(InF); 
          LOOP 
             EXIT WHEN End_Of_Line(InF); 
-            Read_Record(User_Record(1)); 
-            NULL; 
+            Read_Record(User_Record(1));
             Skip_Line(InF); 
          END LOOP; 
       END LOOP; 
