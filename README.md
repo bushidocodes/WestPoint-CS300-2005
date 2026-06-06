@@ -67,14 +67,7 @@ hello.exe        # Windows
 
 ### Multi-file projects
 
-Two programs depend on local packages. `gnatmake` finds them automatically when you compile from the project directory:
-
-**WestPointTrainStation**
-```
-cd WestPointTrainStation
-gnatmake TicketProgram.adb
-./ticketprogram
-```
+Two programs in this repo depend on local packages. `gnatmake` finds them automatically when you compile from the project directory:
 
 **activity_planner** (root directory, depends on `days_enum.ads`/`.adb`)
 ```
@@ -138,15 +131,9 @@ The stub is a **no-op**: `Create_World` prints one diagnostic line, all other dr
 | `turtle_graphics.ads` / `turtle_graphics.adb` | `Turtle_Graphics` stub (Markow, Ressler, Blair / West Point) |
 | `while_loops.adb` | `WHILE` loop — running distance validation |
 
-### WestPointTrainStation/
+### WestPointTrainStation
 
-Ticket sales system for a train station. See [WestPointTrainStation/README.md](WestPointTrainStation/README.md) for the original assignment spec.
-
-| File | Description |
-|------|-------------|
-| `TicketProgram.adb` | Main procedure — menu-driven cashier interface |
-| `TicketProgramPackage.ads` | Package spec: `View_Total_Sales`, `Check_Tickets`, `Find_Change` |
-| `TicketProgramPackage.adb` | Package body |
+Ticket sales system for a train station. Moved to its own repository: [bushidocodes/west-point-train-station](https://github.com/bushidocodes/west-point-train-station).
 
 ### HuntTheWumpus/
 
@@ -186,13 +173,8 @@ Incomplete skeleton (several procedures left as stubs by the original assignment
 ├── turtle_graphics.ads          # stub — Markow/Ressler/Blair West Point graphics
 ├── turtle_graphics.adb
 ├── while_loops.adb
-├── HuntTheWumpus/
-│   ├── Project2Pack.ads         # reconstructed package spec
-│   ├── Project2Pack.adb         # package body
-│   └── Wumpus.adb               # main procedure (incomplete skeleton)
-└── WestPointTrainStation/
-    ├── README.md                # original assignment spec
-    ├── TicketProgramPackage.ads # extracted package spec
-    ├── TicketProgramPackage.adb # package body
-    └── TicketProgram.adb        # main procedure
+└── HuntTheWumpus/
+    ├── Project2Pack.ads         # reconstructed package spec
+    ├── Project2Pack.adb         # package body
+    └── Wumpus.adb               # main procedure (incomplete skeleton)
 ```
