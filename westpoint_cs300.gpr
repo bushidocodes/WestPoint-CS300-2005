@@ -24,4 +24,10 @@ project Westpoint_CS300 is
    for Object_Dir use "obj";
    for Exec_Dir use "bin";
 
+   --  Find_CM_Speed.adb uses mixed case, which violates GNAT's default
+   --  lowercase naming convention; register it explicitly so Linux CI finds it.
+   package Naming is
+      for Body ("Find_CM_Speed") use "Find_CM_Speed.adb";
+   end Naming;
+
 end Westpoint_CS300;
