@@ -7,4 +7,11 @@ project Hunt_The_Wumpus is
    for Object_Dir use "obj";
    for Exec_Dir use "bin";
 
+   --  Mixed-case filenames; register explicitly so Linux CI finds them.
+   package Naming is
+      for Body ("Wumpus") use "Wumpus.adb";
+      for Spec ("Project2Pack") use "Project2Pack.ads";
+      for Body ("Project2Pack") use "Project2Pack.adb";
+   end Naming;
+
 end Hunt_The_Wumpus;
