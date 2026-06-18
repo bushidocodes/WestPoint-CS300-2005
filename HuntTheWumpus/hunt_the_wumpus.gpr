@@ -1,0 +1,10 @@
+project Hunt_The_Wumpus is
+
+   for Main use ("Wumpus.adb");
+
+   --  Source_Dirs includes ".." to pick up Turtle_Graphics (stub) from the root
+   for Source_Dirs use (".", "..");
+   for Object_Dir use "obj";
+   for Exec_Dir use "bin";
+
+end Hunt_The_Wumpus;

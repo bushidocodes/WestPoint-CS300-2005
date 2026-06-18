@@ -1,0 +1,10 @@
+name = "westpoint_cs300"
+description = "CS300 Ada programming exercises from West Point"
+version = "0.1.0"
+licenses = "MIT"
+authors = ["Sean McBride"]
+maintainers = ["Sean McBride <spmcbride1201@gmail.com>"]
+maintainers-logins = ["bushidocodes"]
+
+project-files = ["westpoint_cs300.gpr"]
+

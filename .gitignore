@@ -6,3 +6,10 @@
 *.exe
 b~*.adb
 b~*.ads
+
+# Alire and gprbuild output directories
+obj/
+bin/
+.alire/
+alire/
+config/

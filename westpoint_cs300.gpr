@@ -1,0 +1,27 @@
+project Westpoint_CS300 is
+
+   for Main use (
+      "hello.adb",
+      "cm_to_inch.adb",
+      "convert_grades.adb",
+      "days_enum_demo.adb",
+      "find_speed.adb",
+      "fuel_estimation.adb",
+      "nested_loops.adb",
+      "while_loops.adb",
+      "distance_adder.adb",
+      "distance_red_blue.adb",
+      "find_bundles_each.adb",
+      "Find_CM_Speed.adb",
+      "for_loops.adb",
+      "menu_demo.adb",
+      "file_io_demo.adb",
+      "activity_planner.adb",
+      "distance_red_blue_2.adb"
+   );
+
+   for Source_Dirs use (".");
+   for Object_Dir use "obj";
+   for Exec_Dir use "bin";
+
+end Westpoint_CS300;
