@@ -1,0 +1,24 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Alire and GNAT toolchain
+        uses: alire-project/setup-alire@v3
+        with:
+          toolchain: 'gnat_native gprbuild'
+
+      - name: Build root programs
+        run: alr --non-interactive build
+
+      - name: Build HuntTheWumpus
+        working-directory: HuntTheWumpus
+        run: alr --non-interactive build

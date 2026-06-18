@@ -1,0 +1,10 @@
+name = "hunt_the_wumpus"
+description = "Hunt the Wumpus game in Ada"
+version = "0.1.0"
+licenses = "MIT"
+authors = ["Sean McBride"]
+maintainers = ["Sean McBride <spmcbride1201@gmail.com>"]
+maintainers-logins = ["bushidocodes"]
+
+project-files = ["hunt_the_wumpus.gpr"]
+
