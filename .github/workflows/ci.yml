@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v7
 
       - name: Install Alire and GNAT toolchain
-        uses: alire-project/setup-alire@v3
+        uses: alire-project/setup-alire@v6
         with:
           toolchain: 'gnat_native gprbuild'
 
